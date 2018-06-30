@@ -15,4 +15,9 @@ export class AppComponent {
     watchedOn: 1294166565384,
     isFavorite: false
   };
+
+  // NOTE: Output Event handler (Output from its child component)
+  onMediaItemDelete(deletedMediaItem) {
+  	console.log(`deleted item: ${deletedMediaItem}`);
+  }
 }
