@@ -1,4 +1,9 @@
 <section>
-  <mw-media-item [mediaItem]="mediaItems[0]"
+	<!-- NOTE: ngFor will create an HTML element for every array element -->
+	<!-- NOTE: ngClass can specify the CSS class of the HTML element. A class will be appended to the HTML element only when the expression evaluates to true. -->
+  <mw-media-item 
+    *ngFor="let mi of mediaItems" 
+    [ngClass]="{'medium-movies': mi.medium==='Movies', 'medium-series': mi.medium==='Series'}"
+    [mediaItem]="mi"
     (delete)="onMediaItemDelete($event)"></mw-media-item>
 </section>
