@@ -1,10 +1,17 @@
-import { Directive, HostBinding, Input } from '@angular/core';
+import { Directive, HostBinding, HostListener, Input } from '@angular/core';
 
 @Directive({
   selector: '[mwFavorite]'
 })
 export class FavoriteDirective {
   @HostBinding('class.is-favorite') isFavorite;
+  @HostBinding('class.is-favorite-hovering') hovering = false;
+  @HostListener('mouseenter') onMouseEnter() {
+  	this.hovering = true;
+  }
+  @HostListener('mouseleave') onMouseLeave() {
+  	this.hovering = false;
+  }
   @Input() set favorited(value) {
   	this.isFavorite = value;
   }
@@ -47,4 +54,8 @@ And in the HTML template, we only need to:
 This does 2 things at one time:
 1. Select the directive with an mwFavorite attribute selector
 2. Set the mwFavorite variable or setter of the directive to the value of mediaItem.isFavorite
+
+
+
+After passing the values, we can also set a listener on the host HTML element.
 */
