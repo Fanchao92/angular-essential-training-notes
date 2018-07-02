@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { MediaItemService } from './media-item.service';
 
@@ -8,13 +9,21 @@ import { MediaItemService } from './media-item.service';
   styleUrls: ['app/media-item-list.component.css']
 })
 export class MediaItemListComponent {
-  medium = '';
   mediaItems = [];
 
-  constructor(private mediaItemService: MediaItemService) {}
+  constructor(
+    private mediaItemService: MediaItemService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.getMediaItems(this.medium);
+    this.activatedRoute.params.subscribe(params => {
+      let medium = params['medium'];
+      if (medium === 'all') {
+        medium = "";
+      } 
+      this.getMediaItems(medium);
+    });
   }
 
   onMediaItemDelete(mediaItem) {
