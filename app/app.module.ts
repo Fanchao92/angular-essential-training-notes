@@ -8,6 +8,7 @@ import { MediaItemListComponent } from './media-item-list.component';
 import { FavoriteDirective } from './favorite.directive';
 import { CategoryListPipe } from './category-list.pipe';
 import { MediaItemFormComponent } from './media-item-form.component';
+import { MediaItemService } from './media-item.service';
 
 @NgModule({
   imports: [
@@ -24,6 +25,10 @@ import { MediaItemFormComponent } from './media-item-form.component';
   ],
   bootstrap: [
     AppComponent
+  ],
+  // NOTE: A provider in the root module will make the service available throughout the app
+  providers: [
+  	MediaItemService
   ]
 })
 export class AppModule {}
