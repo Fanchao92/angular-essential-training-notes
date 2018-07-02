@@ -37,6 +37,12 @@
     <li>
       <label for="year">Year</label>
       <input type="text" name="year" id="year" maxlength="4" formControlName="year">
+      <!-- NOTE:
+        The error message is whatever returned by the non-null return value in the validator
+        In this case, it's the JSON object that has a 'rangeError' property, which is also a JSON object -->
+      <div *ngIf="form.get('year').hasError('rangeError')" class="error">
+        Year must be within {{form.get('year').getError('rangeError').min}} and {{form.get('year').getError('rangeError').max}}
+      </div>
     </li>
   </ul>
   <button type="submit" [disabled]="!form.valid">Save</button>
