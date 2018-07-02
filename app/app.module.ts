@@ -10,6 +10,10 @@ import { CategoryListPipe } from './category-list.pipe';
 import { MediaItemFormComponent } from './media-item-form.component';
 import { MediaItemService } from './media-item.service';
 
+const lookupLists = {
+	mediums: ['Movies', 'Series']
+};
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -27,8 +31,10 @@ import { MediaItemService } from './media-item.service';
     AppComponent
   ],
   // NOTE: A provider in the root module will make the service available throughout the app
+  // NOTE: If we want to inject something other than a service into the app, we can use 'provide-useValue' or 'provide-useClass' syntax
   providers: [
-  	MediaItemService
+  	MediaItemService,
+  	{ provide: 'lookupListToken', useValue: lookupLists }
   ]
 })
 export class AppModule {}

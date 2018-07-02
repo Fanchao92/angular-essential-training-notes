@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { MediaItemService } from './media-item.service';
 
@@ -14,7 +14,9 @@ export class MediaItemFormComponent {
   // NOTE: Inject the MediaItemService into the current component (This service is made app-wide available by the provider array in the root module)
   constructor(
   	private formBuilder: FormBuilder,
-  	private mediaItemService: MediaItemService
+  	private mediaItemService: MediaItemService,
+  	@Inject('lookupListToken') public lookupLists  // NOTE: The lookup Lists are provided in the root module by 'provide-useValue' syntax in the providers array
+  											// NOTE: The selector within the Inject decorator needs to match whatever is stated as the 'provide' property within the providers array
   ) {}
 
   ngOnInit() {
